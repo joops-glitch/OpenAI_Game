@@ -25,6 +25,19 @@ tileset = {
     '<': '<',  # Shooting power-up
 }
 
+level = [
+    "########################################",
+    "#                                      #",
+    "#                                      #",
+    "#                                      #",
+    "#                                      #",
+    "#                                      #",
+    "#                                      #",
+    "#                                      #",
+    "#                                      #",
+    "########################################"
+]
+
 ####Later, come back and set up level and adjust player's position. Maybe player's position is in a helper function that changes every level?
 
 # # Create a list to hold the tiles of the level
@@ -56,7 +69,7 @@ bullets = []
 # Set up the player's velocity and gravity
 x_velocity = 0
 y_velocity = 0
-gravity = 0#.5
+gravity = 0.5
 
 # Load the particle image
 bullet_char = "-"
@@ -71,6 +84,15 @@ def draw_text(surface, text, x, y, color=(255, 255, 255), font_name = "Arial", f
     font = pygame.font.Font(font_name, font_size)
     text_surface = font.render(text, True, color)
     surface.blit(text_surface, (x, y))
+
+def draw_level(level, screen):
+    for y, row in enumerate(level):
+        for x, char in enumerate(row):
+            if char == "#":
+                color = (0, 0, 0)
+            elif char == " ":
+                color = (255, 255, 255)
+            pygame.draw.rect(screen, color, (x * 16, y * 16, 16, 16))
 
 # Main game loop
 while True:
@@ -88,6 +110,8 @@ while True:
                 bullets.append(particle.Particle(player_rect.centerx, player_rect.centery, screen, bullets, bullet_color, distance=100, draw_text_fn=draw_text))  # Shoot
             elif event.button == 3:  # Y button
                 pass  # Open menu
+
+    draw_level(level, screen)
 
     # Update the player's velocity and position
     x_velocity = joystick.get_axis(0) * 5
