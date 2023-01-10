@@ -61,6 +61,9 @@ gravity = 0#.5
 # Load the particle image
 bullet_char = "-"
 
+#give the bullet a color
+bullet_color = (255, 255, 255)
+
 #helper function for drawing text
 def draw_text(surface, text, x, y, color=(255, 255, 255), font_name = "Arial", font_size=16):
     if font_name not in pygame.font.get_fonts():
@@ -75,14 +78,14 @@ while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
-            sys.exit()
+            #sys.exit()
         if event.type == pygame.JOYBUTTONUP:
             if event.button == 0:  # A button
                 y_velocity = -10  # Jump
             elif event.button == 1:  # B button
                 pass  # Dash
             if event.button == 2:  # X button
-                bullets.append(particle.Particle(player_rect.centerx, player_rect.centery, bullet_char, screen, bullets, distance=100))  # Shoot
+                bullets.append(particle.Particle(player_rect.centerx, player_rect.centery, screen, bullets, bullet_color, distance=100, draw_text_fn=draw_text))  # Shoot
             elif event.button == 3:  # Y button
                 pass  # Open menu
 
@@ -109,11 +112,9 @@ while True:
         for i, row in enumerate(platform.map):
             for j, col in enumerate(row):
                 draw_text(screen, col, j*16, i*16)
+        for bullet in bullets:
+            draw_text(bullet)
     pygame.display.flip()
 
     # Limit the frame rate
     clock.tick(60)
-
-    #run the game
-    #if name == 'main':
-    #    main()
