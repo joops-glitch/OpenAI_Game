@@ -2,6 +2,7 @@
 
 import pygame
 import particle
+import blocks
 
 
 # Initialize the Pygame display

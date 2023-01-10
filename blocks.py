@@ -1,3 +1,7 @@
+#blocks.py
+
+import pygame
+
 class Platform:
     def __init__(self, x, y, width, height, image):
         self.image = image
