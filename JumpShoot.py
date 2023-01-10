@@ -1,3 +1,5 @@
+#JumpShoot.py
+
 import pygame
 import particle
 
@@ -63,12 +65,12 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
-        if event.type == pygame.JOYBUTTONDOWN:
+        if event.type == pygame.JOYBUTTONUP:
             if event.button == 0:  # A button
                 y_velocity = -10  # Jump
             elif event.button == 1:  # B button
                 pass  # Dash
-            elif event.button == 2:  # Y button
+            if event.button == 2:  # X button
                 particles.append(particle.Particle(player_rect.centerx, player_rect.centery, particle_image, screen))  # Shoot
             elif event.button == 3:  # Y button
                 pass  # Open menu
