@@ -20,18 +20,6 @@ class Particle:
             self.bullets.remove(self)
         self.draw_text(self.screen, "-", self.x, self.y, color=self.bullet_color)
 
-# class Particle:
-#     def __init__(self, x, y, bullet_char, screen, bullets, bullet_color, distance, draw_text_fn):
-#         self.x = x
-#         self.y = y
-#         self.bullet_char = bullet_char
-#         self.speed = 5
-#         self.screen = screen
-#         self.bullets = bullets
-#         self.bullet_color = bullet_color
-#         self.distance = distance
-#         self.draw_text = draw_text_fn
-
 #     def update(self):
 #         self.x += self.speed
 #         if self.x > len(self.map[0])*16: #if it goes off screen
