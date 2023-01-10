@@ -12,6 +12,9 @@ class Particle:
             self.x = 0
 
 
+####example of a fired shot on button press
+# bullets.append(particle.Particle(player_rect.centerx, player_rect.centery, bullet_char, screen, bullets, distance=100))  # Shoot
+
 
 
 ####Use as a base to set up the ASCII particle
