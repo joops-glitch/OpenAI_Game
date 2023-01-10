@@ -18,8 +18,8 @@ sprite_sheet = pygame.image.load("images/player.png").convert()
 frames = []
 
 # Define the dimensions of each frame
-frame_width = 200
-frame_height = 200
+frame_width = 32
+frame_height = 32
 
 # Extract the frames from the sprite sheet and add them to the list
 for i in range(0, sprite_sheet.get_width(), frame_width):
@@ -68,7 +68,7 @@ while True:
                 y_velocity = -10  # Jump
             elif event.button == 1:  # B button
                 pass  # Dash
-            elif event.button == 2:  # X button
+            elif event.button == 2:  # Y button
                 particles.append(particle.Particle(player_rect.centerx, player_rect.centery, particle_image, screen))  # Shoot
             elif event.button == 3:  # Y button
                 pass  # Open menu
