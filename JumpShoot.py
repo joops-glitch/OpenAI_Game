@@ -1,4 +1,6 @@
 import pygame
+import particle
+
 
 # Initialize the Pygame display
 pygame.display.init()
@@ -24,6 +26,11 @@ for i in range(0, sprite_sheet.get_width(), frame_width):
     frame = sprite_sheet.subsurface(pygame.Rect(i, 0, frame_width, frame_height))
     frames.append(frame)
 
+
+# Set up the player
+player_image = frames[0]
+player_rect = player_image.get_rect()
+player_rect.bottom = screen.get_height()  # Position the player at the bottom of the screen
 # Set up the player character
 player_image = frames[0]
 player_rect = player_image.get_rect()
@@ -44,7 +51,10 @@ particles = []
 # Set up the player's velocity and gravity
 x_velocity = 0
 y_velocity = 0
-gravity = 0.5
+gravity = 0#.5
+
+# Load the particle image
+particle_image = pygame.image.load("images/bullet.png").convert()
 
 # Main game loop
 while True:
@@ -59,9 +69,9 @@ while True:
             elif event.button == 1:  # B button
                 pass  # Dash
             elif event.button == 2:  # X button
-                pass  # Open menu
+                particles.append(particle.Particle(player_rect.centerx, player_rect.centery, particle_image, screen))  # Shoot
             elif event.button == 3:  # Y button
-                particles.append(Particle(player_rect.centerx, player_rect.centery))  # Shoot
+                pass  # Open menu
 
     # Update the player's velocity and position
     x_velocity = joystick.get_axis(0) * 5
