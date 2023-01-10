@@ -13,6 +13,3 @@ class Particle:
         self.rect.x += self.speed
         if self.rect.right > self.screen.get_width():  # If the particle goes off the screen
             self.rect.left = 0  # Wrap it around to the left side
-
-
-            import pygame
