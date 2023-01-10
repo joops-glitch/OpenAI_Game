@@ -47,8 +47,8 @@ joystick.init()
 # Set up the platforms
 platforms = []
 
-# Set up the particles
-particles = []
+# Set up the bullet particles
+bullets = []
 
 # Set up the player's velocity and gravity
 x_velocity = 0
@@ -56,7 +56,7 @@ y_velocity = 0
 gravity = 0#.5
 
 # Load the particle image
-particle_image = pygame.image.load("images/bullet.png").convert()
+bullet_image = pygame.image.load("images/bullet.png").convert()
 
 # Main game loop
 while True:
@@ -71,7 +71,7 @@ while True:
             elif event.button == 1:  # B button
                 pass  # Dash
             if event.button == 2:  # X button
-                particles.append(particle.Particle(player_rect.centerx, player_rect.centery, particle_image, screen))  # Shoot
+                bullets.append(particle.Particle(player_rect.centerx, player_rect.centery, bullet_image, screen, bullets, distance=100))  # Shoot
             elif event.button == 3:  # Y button
                 pass  # Open menu
 
@@ -86,16 +86,16 @@ while True:
         platform.update()
 
     # Update the particles
-    for particle in particles:
-        particle.update()
+    for bullet in bullets:
+        bullet.update()
 
     # Draw the screen
     screen.fill((0, 0, 0))
     screen.blit(player_image, player_rect)
     for platform in platforms:
         screen.blit(platform.image, platform.rect)
-    for particle in particles:
-        screen.blit(particle.image, particle.rect)
+    for bullet in bullets:
+        screen.blit(bullet.image, bullet.rect)
     pygame.display.flip()
 
     # Limit the frame rate
