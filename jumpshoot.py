@@ -1,5 +1,6 @@
 import pygame
 import particle
+import math
 
 # Initialize the Pygame display
 pygame.display.init()
@@ -89,10 +90,11 @@ def draw_level(level, screen):
     for y, row in enumerate(level):
         for x, char in enumerate(row):
             if char == "#":
-                color = (0, 0, 0)
-            elif char == " ":
                 color = (255, 255, 255)
+            elif char == " ":
+                color = (0, 0, 0)
             pygame.draw.rect(screen, color, (x * 16, y * 16, 16, 16))
+
 
 # Main game loop
 while True:
