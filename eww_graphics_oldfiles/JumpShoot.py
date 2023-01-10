@@ -14,6 +14,20 @@ pygame.init()
 # Set up the display
 screen = pygame.display.set_mode((640, 480))
 
+# Load the tileset image
+tileset_image = pygame.image.load("images/tiles-tech-steel-gold-alpha.png").convert()
+
+# Set the tile size (assume all tiles in the tileset are the same size)
+tile_size = 16
+
+# Create a 2D array to represent the level layout
+level = [
+    [0, 1, 2, 3],
+    [4, 5, 6, 7],
+    [8, 9, 10, 11],
+    [12, 13, 14, 15],
+]
+
 # Load the sprite sheet
 sprite_sheet = pygame.image.load("images/player.png").convert()
 
@@ -65,7 +79,7 @@ while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             pygame.quit()
-            sys.exit()
+            #sys.exit()
         if event.type == pygame.JOYBUTTONUP:
             if event.button == 0:  # A button
                 y_velocity = -10  # Jump
@@ -90,8 +104,16 @@ while True:
     for bullet in bullets:
         bullet.update()
 
+    # Draw the level
+    for row in range(len(level)):
+        for column in range(len(level[row])):
+            tile = level[row][column]
+            x = column * tile_size
+            y = row * tile_size
+            screen.blit(tileset_image, (x, y), (tile * tile_size, 0, tile_size, tile_size))
+
     # Draw the screen
-    screen.fill((0, 0, 0))
+    #screen.fill((0, 0, 0))
     screen.blit(player_image, player_rect)
     for platform in platforms:
         screen.blit(platform.image, platform.rect)
